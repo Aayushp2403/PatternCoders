@@ -102,6 +102,11 @@ body::before {
 }
 
 .site-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.55rem;
   color: var(--muted);
   text-decoration: none;
   font-size: 0.95rem;
@@ -130,6 +135,10 @@ body::before {
   gap: clamp(2rem, 4vw, 4rem);
   align-items: center;
   min-height: calc(100vh - 6rem);
+}
+
+.hero-copy {
+  max-width: 42rem;
 }
 
 .eyebrow {
@@ -533,15 +542,34 @@ body::before {
 
 @media (max-width: 1100px) {
   .hero,
-  .services-grid,
-  .founders-grid,
-  .projects-grid,
   .process-steps {
     grid-template-columns: 1fr;
   }
 
+  .hero {
+    min-height: auto;
+    padding-top: 2rem;
+  }
+
   .hero-visual {
     min-height: 24rem;
+  }
+
+  .services-grid,
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .founders-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .process-panel,
+  .cta-card,
+  .services-grid,
+  .projects-grid,
+  .founders-grid {
+    width: 100%;
   }
 
   .founders-section .founder-card:nth-child(2) {
@@ -549,20 +577,47 @@ body::before {
   }
 }
 
+@media (max-width: 860px) {
+  .services-grid,
+  .projects-grid,
+  .founders-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding-top: 4rem;
+  }
+
+  .hero {
+    gap: 1.5rem;
+  }
+
+  .hero h1 {
+    max-width: 12ch;
+  }
+}
+
 @media (max-width: 720px) {
+  .page-shell {
+    width: min(calc(100% - 1rem), 1200px);
+  }
+
   .site-header {
     flex-direction: column;
     gap: 0.9rem;
+    padding: 0.9rem 1rem;
     border-radius: 1.25rem;
   }
 
   .site-nav {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 0.35rem 0.65rem;
   }
 
-  .section {
-    padding-top: 4rem;
+  .site-nav a {
+    min-height: 2.35rem;
+    padding-inline: 0.7rem;
   }
 
   .hero h1 {
@@ -581,6 +636,52 @@ body::before {
   .cta-card,
   .process-panel {
     padding: 1.5rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-shell {
+    width: min(calc(100% - 0.75rem), 1200px);
+  }
+
+  .section {
+    padding-top: 3.5rem;
+  }
+
+  .hero {
+    gap: 1.25rem;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .metric-row,
+  .signal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-card,
+  .service-card,
+  .founder-card,
+  .project-card,
+  .process-panel,
+  .cta-card {
+    padding: 1.2rem;
+  }
+
+  .section-heading h2,
+  .cta-card h2 {
+    font-size: clamp(2rem, 9vw, 2.7rem);
   }
 }
 
