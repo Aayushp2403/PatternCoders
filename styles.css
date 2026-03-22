@@ -1,14 +1,11 @@
 :root {
   --bg: #0b1020;
-  --bg-alt: #10182d;
   --panel: rgba(14, 22, 40, 0.72);
-  --panel-strong: rgba(19, 30, 54, 0.92);
   --line: rgba(255, 255, 255, 0.08);
   --text: #f4f7fb;
   --muted: #adc0d9;
   --accent: #80ffcf;
   --accent-strong: #ff916e;
-  --accent-soft: #82aaff;
   --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
 }
 
@@ -16,7 +13,8 @@
   box-sizing: border-box;
 }
 
-html {
+html,
+body {
   scroll-behavior: smooth;
 }
 
@@ -107,22 +105,31 @@ body::before {
   color: var(--muted);
   text-decoration: none;
   font-size: 0.95rem;
+  transition: color 180ms ease, background 180ms ease;
 }
 
-.site-nav a:hover {
+.site-nav a:hover,
+.site-nav a.active {
   color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .section {
+  position: relative;
+  min-height: auto;
   padding: 5rem 0 1rem;
+}
+
+.section::after {
+  display: none;
 }
 
 .hero {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 2rem;
-  min-height: calc(100vh - 6rem);
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: clamp(2rem, 4vw, 4rem);
   align-items: center;
+  min-height: calc(100vh - 6rem);
 }
 
 .eyebrow {
@@ -144,8 +151,8 @@ body::before {
 }
 
 .hero h1 {
-  font-size: clamp(3.4rem, 7vw, 6.6rem);
-  max-width: 11ch;
+  font-size: clamp(3.2rem, 6vw, 6rem);
+  max-width: 10ch;
 }
 
 .highlight {
@@ -157,7 +164,8 @@ body::before {
 .service-card p,
 .founder-card p,
 .step p,
-.cta-card p {
+.cta-card p,
+.project-card p {
   color: var(--muted);
 }
 
@@ -205,7 +213,7 @@ body::before {
 
 .hero-visual {
   position: relative;
-  min-height: 34rem;
+  min-height: min(60vh, 40rem);
   display: grid;
   place-items: center;
 }
@@ -246,6 +254,7 @@ body::before {
 .dashboard-card,
 .service-card,
 .founder-card,
+.project-card,
 .process-panel,
 .cta-card {
   position: relative;
@@ -259,6 +268,7 @@ body::before {
 .dashboard-card::before,
 .service-card::before,
 .founder-card::before,
+.project-card::before,
 .process-panel::before,
 .cta-card::before {
   content: "";
@@ -347,27 +357,32 @@ body::before {
 
 .services-grid,
 .founders-grid,
+.projects-grid,
 .process-steps {
   display: grid;
   gap: 1.25rem;
 }
 
 .services-grid {
+  width: min(100%, 62rem);
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .founders-grid {
+  width: min(100%, 68rem);
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .service-card,
-.founder-card {
+.founder-card,
+.project-card {
   padding: 1.5rem;
   border-radius: 1.5rem;
 }
 
 .service-card h3,
 .founder-card h3,
+.project-card h3,
 .step h3 {
   margin: 0.8rem 0;
   font-size: 1.4rem;
@@ -375,9 +390,46 @@ body::before {
 
 .service-card p,
 .founder-card p,
+.project-card p,
 .step p {
   margin: 0;
   line-height: 1.7;
+}
+
+.work-section {
+  justify-content: center;
+}
+
+.projects-grid {
+  width: min(100%, 70rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background:
+    radial-gradient(circle at top right, rgba(130, 170, 255, 0.18), transparent 30%),
+    linear-gradient(180deg, rgba(16, 24, 45, 0.94), rgba(11, 17, 32, 0.88));
+}
+
+.project-copy {
+  max-width: 100%;
+}
+
+.text-link {
+  display: inline-flex;
+  margin-top: 1.2rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.text-link:hover {
+  color: var(--text);
 }
 
 .founders-section .founder-card:nth-child(2) {
@@ -385,6 +437,7 @@ body::before {
 }
 
 .process-panel {
+  width: min(100%, 70rem);
   padding: 2rem;
   border-radius: 2rem;
   background: linear-gradient(180deg, rgba(17, 24, 43, 0.92), rgba(10, 15, 28, 0.88));
@@ -400,11 +453,8 @@ body::before {
   border-top: 1px solid var(--line);
 }
 
-.cta-section {
-  padding-bottom: 3rem;
-}
-
 .cta-card {
+  width: min(100%, 70rem);
   padding: 2.4rem;
   border-radius: 2rem;
   text-align: center;
@@ -481,21 +531,13 @@ body::before {
   }
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1100px) {
   .hero,
   .services-grid,
   .founders-grid,
+  .projects-grid,
   .process-steps {
     grid-template-columns: 1fr;
-  }
-
-  .hero {
-    min-height: auto;
-    padding-top: 3rem;
-  }
-
-  .hero h1 {
-    max-width: 12ch;
   }
 
   .hero-visual {
@@ -508,10 +550,6 @@ body::before {
 }
 
 @media (max-width: 720px) {
-  .page-shell {
-    width: min(100% - 1.2rem, 1200px);
-  }
-
   .site-header {
     flex-direction: column;
     gap: 0.9rem;
@@ -528,12 +566,13 @@ body::before {
   }
 
   .hero h1 {
-    font-size: clamp(2.8rem, 16vw, 4rem);
+    font-size: clamp(2.6rem, 12vw, 4rem);
   }
 
   .dashboard-card,
   .service-card,
   .founder-card,
+  .project-card,
   .process-panel,
   .cta-card {
     border-radius: 1.25rem;

@@ -1,11 +1,14 @@
 const revealItems = document.querySelectorAll(".reveal");
+const sectionTargets = document.querySelectorAll("main > section[id]");
+const stateLinks = document.querySelectorAll(".site-nav a, .brand");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const revealObserver = new IntersectionObserver(
-  (entries) => {
+  (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
-        revealObserver.unobserve(entry.target);
+        observer.unobserve(entry.target);
       }
     });
   },
@@ -15,14 +18,36 @@ const revealObserver = new IntersectionObserver(
 );
 
 revealItems.forEach((item, index) => {
-  item.style.transitionDelay = `${index * 90}ms`;
+  item.style.transitionDelay = `${index * 70}ms`;
   revealObserver.observe(item);
+});
+
+const navObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        return;
+      }
+
+      const sectionId = entry.target.id;
+      stateLinks.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${sectionId}`);
+      });
+    });
+  },
+  {
+    threshold: 0.45,
+  }
+);
+
+sectionTargets.forEach((section) => {
+  navObserver.observe(section);
 });
 
 const visual = document.querySelector(".hero-visual");
 const card = document.querySelector(".dashboard-card");
 
-if (visual && card && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+if (visual && card && !reducedMotion) {
   visual.addEventListener("mousemove", (event) => {
     const rect = visual.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
