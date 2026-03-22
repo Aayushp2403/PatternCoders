@@ -150,6 +150,7 @@ body::before {
 }
 
 .hero h1,
+.contact-hero h1,
 .section-heading h2,
 .cta-card h2 {
   margin: 0;
@@ -162,6 +163,11 @@ body::before {
 .hero h1 {
   font-size: clamp(3.2rem, 6vw, 6rem);
   max-width: 10ch;
+}
+
+.contact-hero h1 {
+  font-size: clamp(2.7rem, 5vw, 4.8rem);
+  max-width: 12ch;
 }
 
 .highlight {
@@ -264,6 +270,7 @@ body::before {
 .service-card,
 .founder-card,
 .project-card,
+.contact-card,
 .process-panel,
 .cta-card {
   position: relative;
@@ -278,6 +285,7 @@ body::before {
 .service-card::before,
 .founder-card::before,
 .project-card::before,
+.contact-card::before,
 .process-panel::before,
 .cta-card::before {
   content: "";
@@ -367,6 +375,7 @@ body::before {
 .services-grid,
 .founders-grid,
 .projects-grid,
+.contact-grid,
 .process-steps {
   display: grid;
   gap: 1.25rem;
@@ -384,7 +393,8 @@ body::before {
 
 .service-card,
 .founder-card,
-.project-card {
+.project-card,
+.contact-card {
   padding: 1.5rem;
   border-radius: 1.5rem;
 }
@@ -392,6 +402,7 @@ body::before {
 .service-card h3,
 .founder-card h3,
 .project-card h3,
+.contact-card h2,
 .step h3 {
   margin: 0.8rem 0;
   font-size: 1.4rem;
@@ -400,9 +411,41 @@ body::before {
 .service-card p,
 .founder-card p,
 .project-card p,
+.contact-card p,
 .step p {
   margin: 0;
   line-height: 1.7;
+}
+
+.contact-section {
+  padding-top: 1rem;
+}
+
+.contact-grid {
+  width: min(100%, 70rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  background:
+    radial-gradient(circle at top right, rgba(128, 255, 207, 0.14), transparent 30%),
+    linear-gradient(180deg, rgba(16, 24, 45, 0.94), rgba(11, 17, 32, 0.88));
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.phone-link {
+  margin-top: 0;
+  font-size: 1.1rem;
 }
 
 .work-section {
@@ -560,7 +603,8 @@ body::before {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .founders-grid {
+  .founders-grid,
+  .contact-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -568,7 +612,8 @@ body::before {
   .cta-card,
   .services-grid,
   .projects-grid,
-  .founders-grid {
+  .founders-grid,
+  .contact-grid {
     width: 100%;
   }
 
@@ -580,7 +625,8 @@ body::before {
 @media (max-width: 860px) {
   .services-grid,
   .projects-grid,
-  .founders-grid {
+  .founders-grid,
+  .contact-grid {
     grid-template-columns: 1fr;
   }
 
@@ -628,6 +674,7 @@ body::before {
   .service-card,
   .founder-card,
   .project-card,
+  .contact-card,
   .process-panel,
   .cta-card {
     border-radius: 1.25rem;
@@ -674,6 +721,7 @@ body::before {
   .service-card,
   .founder-card,
   .project-card,
+  .contact-card,
   .process-panel,
   .cta-card {
     padding: 1.2rem;
