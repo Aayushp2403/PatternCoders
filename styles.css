@@ -589,6 +589,27 @@ body::before {
     grid-template-columns: 1fr;
   }
 
+  .dashboard-card h2 {
+    font-size: 1.8rem;
+  }
+
+  .metric-value {
+    font-size: 1.35rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.9rem, 7vw, 4.9rem);
+  }
+
+  .contact-hero h1 {
+    font-size: clamp(2.4rem, 5.8vw, 4rem);
+  }
+
+  .section-heading h2,
+  .cta-card h2 {
+    font-size: clamp(2.1rem, 4.3vw, 3.25rem);
+  }
+
   .hero {
     min-height: auto;
     padding-top: 2rem;
@@ -630,6 +651,45 @@ body::before {
     grid-template-columns: 1fr;
   }
 
+  .eyebrow,
+  .card-label,
+  .metric-label,
+  .service-index,
+  .founder-role,
+  .step span {
+    font-size: 0.72rem;
+    letter-spacing: 0.13em;
+  }
+
+  .dashboard-card h2 {
+    font-size: 1.65rem;
+  }
+
+  .metric-value {
+    font-size: 1.2rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.45rem, 9vw, 3.6rem);
+  }
+
+  .contact-hero h1 {
+    font-size: clamp(2.1rem, 7vw, 3.2rem);
+  }
+
+  .section-heading h2,
+  .cta-card h2 {
+    font-size: clamp(1.9rem, 6vw, 2.8rem);
+  }
+
+  .service-card h3,
+  .founder-card h3,
+  .project-card h3,
+  .contact-card h2,
+  .step h3 {
+    font-size: 1.25rem;
+  }
+
   .section {
     padding-top: 4rem;
   }
@@ -640,6 +700,17 @@ body::before {
 
   .hero h1 {
     max-width: 12ch;
+  }
+
+  .hero-text,
+  .service-card p,
+  .founder-card p,
+  .step p,
+  .cta-card p,
+  .project-card p,
+  .contact-card p {
+    font-size: 0.98rem;
+    line-height: 1.65;
   }
 }
 
@@ -664,10 +735,28 @@ body::before {
   .site-nav a {
     min-height: 2.35rem;
     padding-inline: 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  .dashboard-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .metric-value {
+    font-size: 1.1rem;
   }
 
   .hero h1 {
-    font-size: clamp(2.6rem, 12vw, 4rem);
+    font-size: clamp(2.2rem, 10vw, 3rem);
+  }
+
+  .contact-hero h1 {
+    font-size: clamp(1.95rem, 8vw, 2.7rem);
+  }
+
+  .section-heading h2,
+  .cta-card h2 {
+    font-size: clamp(1.8rem, 7vw, 2.35rem);
   }
 
   .dashboard-card,
@@ -700,6 +789,24 @@ body::before {
   }
 
   .hero-text {
+    font-size: 0.97rem;
+  }
+
+  .eyebrow,
+  .card-label,
+  .metric-label,
+  .service-index,
+  .founder-role,
+  .step span {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+
+  .dashboard-card h2 {
+    font-size: 1.35rem;
+  }
+
+  .metric-value {
     font-size: 1rem;
   }
 
@@ -729,7 +836,19 @@ body::before {
 
   .section-heading h2,
   .cta-card h2 {
-    font-size: clamp(2rem, 9vw, 2.7rem);
+    font-size: clamp(1.6rem, 8vw, 2.05rem);
+  }
+
+  .hero h1 {
+    font-size: clamp(1.95rem, 11vw, 2.55rem);
+  }
+
+  .contact-hero h1 {
+    font-size: clamp(1.75rem, 9vw, 2.2rem);
+  }
+
+  .site-nav a {
+    font-size: 0.85rem;
   }
 }
 
