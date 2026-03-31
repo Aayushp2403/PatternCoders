@@ -80,7 +80,6 @@ body::before {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.8rem;
   color: var(--text);
   font-family: "Syne", sans-serif;
   font-weight: 700;
@@ -88,12 +87,13 @@ body::before {
   letter-spacing: 0.03em;
 }
 
-.brand-mark {
-  width: 0.95rem;
-  height: 0.95rem;
-  border-radius: 0.25rem;
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-  box-shadow: 0 0 30px rgba(128, 255, 207, 0.4);
+.brand-logo {
+  display: block;
+  width: auto;
+  height: 2.85rem;
+  max-width: min(32vw, 10rem);
+  border-radius: 0.85rem;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
 }
 
 .site-nav {
@@ -724,6 +724,15 @@ body::before {
     gap: 0.9rem;
     padding: 0.9rem 1rem;
     border-radius: 1.25rem;
+  }
+
+  .brand {
+    font-size: 0.95rem;
+  }
+
+  .brand-logo {
+    height: 2.35rem;
+    max-width: min(60vw, 8.5rem);
   }
 
   .site-nav {
