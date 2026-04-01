@@ -524,19 +524,230 @@ body::before {
   margin-top: 1.6rem;
 }
 
+/* ── 3D & Animation Enhancements ── */
+
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 700ms ease, transform 700ms ease;
+  transform: translateY(40px) rotateX(8deg);
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom center;
 }
 
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) rotateX(0deg);
 }
 
 .card-float {
   animation: cardFloat 7s ease-in-out infinite;
+}
+
+/* Animated text gradient on hero heading */
+.hero h1 .highlight {
+  background: linear-gradient(90deg, var(--accent-strong), #ffcb80, var(--accent), var(--accent-strong));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmer 4s ease-in-out infinite;
+}
+
+/* 3D perspective container for card grids */
+.services-grid,
+.founders-grid,
+.projects-grid {
+  perspective: 1200px;
+}
+
+/* 3D card tilt base */
+.service-card,
+.founder-card,
+.project-card {
+  transition: transform 400ms cubic-bezier(0.03, 0.98, 0.52, 0.99), box-shadow 400ms ease, border-color 300ms ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.service-card:hover,
+.founder-card:hover,
+.project-card:hover {
+  border-color: rgba(128, 255, 207, 0.25);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    0 0 40px rgba(128, 255, 207, 0.08),
+    inset 0 0 60px rgba(128, 255, 207, 0.03);
+}
+
+/* Animated gradient border shimmer */
+.service-card::after,
+.founder-card::after,
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, transparent 30%, rgba(128, 255, 207, 0.3) 50%, transparent 70%);
+  background-size: 250% 250%;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 400ms ease;
+  animation: borderShimmer 3s linear infinite;
+}
+
+.service-card:hover::after,
+.founder-card:hover::after,
+.project-card:hover::after {
+  opacity: 1;
+}
+
+/* Glowing accent line at top of cards on hover */
+.service-card::before,
+.founder-card::before,
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 400ms ease, left 400ms ease, right 400ms ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.service-card:hover::before,
+.founder-card:hover::before,
+.project-card:hover::before {
+  opacity: 1;
+  left: 5%;
+  right: 5%;
+}
+
+/* Magnetic button styles */
+.button {
+  transition: transform 200ms cubic-bezier(0.03, 0.98, 0.52, 0.99), border-color 180ms ease, background 180ms ease, box-shadow 300ms ease;
+}
+
+.button-primary:hover {
+  box-shadow: 0 8px 30px rgba(128, 255, 207, 0.35), 0 0 60px rgba(128, 255, 207, 0.15);
+}
+
+.button-secondary:hover {
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.08);
+  border-color: rgba(128, 255, 207, 0.3);
+}
+
+/* Particles canvas */
+#particles-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+/* Nav link animated underline */
+.site-nav a {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent);
+  transition: width 300ms ease, left 300ms ease;
+  border-radius: 999px;
+}
+
+.site-nav a:hover::after,
+.site-nav a.active::after {
+  width: 60%;
+  left: 20%;
+}
+
+/* Process steps staggered 3D reveal */
+.step {
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 500ms ease;
+  transform-style: preserve-3d;
+}
+
+/* CTA card glow animation */
+.cta-card {
+  transition: box-shadow 500ms ease;
+  animation: ctaGlow 4s ease-in-out infinite alternate;
+}
+
+/* Dashboard card enhanced 3D */
+.dashboard-card {
+  transform-style: preserve-3d;
+  transition: transform 300ms cubic-bezier(0.03, 0.98, 0.52, 0.99);
+}
+
+.dashboard-card .metric-row > div {
+  transition: transform 300ms ease, background 300ms ease;
+}
+
+.dashboard-card:hover .metric-row > div {
+  transform: translateZ(20px);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Signal grid enhanced animation */
+.signal-grid span {
+  transition: transform 300ms ease;
+}
+
+.dashboard-card:hover .signal-grid span {
+  animation-duration: 1.5s;
+}
+
+/* Orb enhanced animations */
+.orb {
+  transition: filter 600ms ease;
+}
+
+.hero-visual:hover .orb {
+  filter: blur(12px) brightness(1.2);
+}
+
+/* Eyebrow text glow */
+.eyebrow {
+  text-shadow: 0 0 20px rgba(128, 255, 207, 0.3);
+}
+
+/* Service index counter glow on hover */
+.service-card:hover .service-index {
+  text-shadow: 0 0 12px rgba(128, 255, 207, 0.6);
+  transition: text-shadow 300ms ease;
+}
+
+/* Parallax depth layers */
+.parallax-layer {
+  will-change: transform;
+  transition: transform 100ms linear;
+}
+
+@keyframes textShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes borderShimmer {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 250% 250%; }
+}
+
+@keyframes ctaGlow {
+  0% { box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35), 0 0 0px rgba(128, 255, 207, 0); }
+  100% { box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35), 0 0 60px rgba(128, 255, 207, 0.08); }
 }
 
 @keyframes float {
